@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+
+</style> 
+</head>
+<body>
+     <!-- inlaine javasript -->
+    <button type="button" onclick="alert('halo dunia! Ini adalah demo JavaScript inline')">
+        klik disini
+    </button>
+
+    <button type="button" onclick="prompt('halo baro')">coba</button>
+
+    <button type="button" onclick="confirm('Apakah Anda yakin?')">konfirmasi</button>
+
+    <bu type="button" onclick="tampilkanPesan()">Tampilkan Pesan</buton>
+    <!-- kakulator sederhana -->    
+    <h1>Kalkulator Sederhana</h1>
+    <p>Masukkan dua angka untuk melakukan operasi aritmatika dasar.</p>
+    <input type="number" id="num1" placeholder="Angka Pertama" />
+    <input type="number" id="num2" placeholder="Angka Kedua" />
+    <button onclick="calculate()">Hitung</button>       
+    <div id="result"></div>
+    
+     <!-- panggil data dari js -->
+    <div id="dataContainer">
+        <h2>Data Buah</h2>
+        <ul id="fruitList"></ul>    
+    </div>
+    
+    <!-- tambah data buah  -->
+    <div id="addFruitContainer">
+        <h2>Tambah Buah</h2>
+        <input type="text" id="newFruit" placeholder="Masukkan nama buah" />
+        <button onclick="addFruit()">Tambah Buah</button>
+    </div>
+
+     <script src="main.js"></script>
+
+     
+
+     <script>
+        function calculate() {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            const resultDiv = document.getElementById('result');
+            if (isNaN(num1) || isNaN(num2)) {
+                resultDiv.innerHTML = "Masukkan angka yang valid.";
+                return;
+            }
+            const sum = num1 + num2;
+            const difference = num1 - num2;
+            const product = num1 * num2;
+            const quotient = num2 !== 0 ? (num1 / num2).toFixed(2) : "Tidak dapat dibagi dengan nol";
+            resultDiv.innerHTML = `
+                <p>Penjumlahan: ${sum}</p>
+                <p>Pengurangan: ${difference}</p>
+                <p>Perkalian: ${product}</p>
+                <p>Pembagian: ${quotient}</p>
+            `;
+        }
+     </script>
+        
+</body>
+</html>

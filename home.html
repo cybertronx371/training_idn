@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo Lanjutan CSS</title>
+
+    <style>
+      /* ==========================================================================
+         1. Konfigurasi Dasar & Variabel
+         ========================================================================== */
+
+      /* Variabel CSS untuk manajemen warna dan properti global yang lebih mudah */
+      :root {
+        --primary-color: #0077b6;
+        --secondary-color: #00b4d8;
+        --accent-color: #ff6f61;
+        --bg-color: #f8f9fa;
+        --surface-color: #ffffff;
+        --text-color: #343a40;
+        --border-color: #dee2e6;
+        --spacing-unit: 1rem; /* 16px by default */
+      }
+
+      /* Reset CSS yang lebih modern untuk konsistensi antar browser */
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        /* Memberi ruang di atas untuk header yang fixed */
+        padding-top: 80px;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      /* ==========================================================================
+         2. Komponen & Layout Utama
+         ========================================================================== */
+
+      /* Header yang menempel di atas (Fixed) */
+      .main-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        background-color: var(--primary-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: calc(var(--spacing-unit) * 2);
+        padding: 0 var(--spacing-unit);
+        z-index: 1000; /* z-index harus berupa angka, bukan persen */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-link {
+        text-decoration: none;
+        color: var(--surface-color);
+        background-color: var(--accent-color);
+        padding: 8px 16px;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+
+      .nav-link:hover {
+        background-color: #e65a4c; /* Warna aksen yang sedikit lebih gelap */
+        transform: translateY(-2px);
+      }
+
+      /* Kontainer utama untuk semua konten demo */
+      main {
+        padding: var(--spacing-unit);
+      }
+
+      /* Styling untuk setiap bagian demo agar konsisten */
+      .demo-section {
+        max-width: 900px;
+        margin: 0 auto calc(var(--spacing-unit) * 3);
+        padding: calc(var(--spacing-unit) * 1.5);
+        background-color: var(--surface-color);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .demo-section h2 {
+        color: var(--primary-color);
+        margin-bottom: var(--spacing-unit);
+        border-bottom: 2px solid var(--secondary-color);
+        padding-bottom: calc(var(--spacing-unit) / 2);
+      }
+
+      .demo-box {
+        background-color: #e9ecef;
+        padding: var(--spacing-unit);
+        border-radius: 5px;
+        min-height: 150px;
+      }
+
+      /* ==========================================================================
+         3. Demo CSS Spesifik
+         ========================================================================== */
+
+      /* --- Demo Selector --- */
+      .circle-container {
+        display: flex;
+        gap: var(--spacing-unit);
+      }
+      .circle {
+        width: 60px;
+        height: 60px;
+        background-color: var(--secondary-color);
+        border-radius: 50%; /* 50% lebih baik untuk lingkaran sempurna */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-weight: bold;
+      }
+      /* Pseudo-class :nth-child untuk memilih elemen ganjil/genap */
+      .circle:nth-child(odd) {
+        background-color: var(--accent-color);
+      }
+      /* Pseudo-class :hover */
+      .circle:hover {
+        transform: scale(1.1);
+        transition: transform 0.2s ease;
+      }
+
+      /* --- Demo Display Property --- */
+      .display-demo-box span {
+        padding: 10px;
+        border: 1px solid var(--border-color);
+        margin: 5px;
+        border-radius: 4px;
+      }
+      .display-block span {
+        display: block;
+        background-color: rgba(0, 180, 216, 0.2);
+      }
+      .display-inline span {
+        display: inline;
+        background-color: rgba(255, 111, 97, 0.2);
+      }
+      .display-inline-block span {
+        display: inline-block;
+        width: 200px; /* Hanya bisa diatur di inline-block/block */
+        background-color: rgba(144, 238, 144, 0.3);
+      }
+      .display-hidden {
+        visibility: hidden; /* Elemen tetap memakan ruang */
+      }
+      .display-none {
+        display: none; /* Elemen hilang dan tidak memakan ruang */
+      }
+
+      /* --- Demo Position Property --- */
+      .position-container {
+        position: relative; /* Parent untuk elemen 'absolute' */
+        height: 200px;
+        border: 2px dashed var(--primary-color);
+      }
+      .position-box {
+        width: 100px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        border-radius: 4px;
+      }
+      .pos-relative {
+        position: relative;
+        top: 20px;
+        left: 20px;
+        background-color: var(--accent-color);
+      }
+      .pos-absolute {
+        position: absolute;
+        top: 40px;
+        right: 40px; /* Lebih baik dari 'left: 70%' yang tidak pasti */
+        background-color: var(--secondary-color);
+      }
+
+      /* --- Demo Flexbox --- */
+      .flex-container {
+        display: flex;
+        flex-wrap: wrap; /* Agar item pindah ke baris baru jika tidak muat */
+        gap: var(--spacing-unit);
+        background-color: #343a40;
+        padding: var(--spacing-unit);
+        border-radius: 8px;
+      }
+      .flex-item {
+        flex: 1 1 150px; /* Fleksibel: grow, shrink, dan basis ukuran */
+        height: 100px;
+        background-color: var(--secondary-color);
+        border-radius: 5px;
+      }
+
+      /* --- Demo Grid --- */
+      .grid-container {
+        display: grid;
+        /* Kolom akan dibuat otomatis (min 150px) untuk mengisi ruang */
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: var(--spacing-unit);
+        background-color: #e9ecef;
+        padding: var(--spacing-unit);
+        border-radius: 8px;
+      }
+      .grid-item {
+        height: 100px;
+        background-color: var(--primary-color);
+        border-radius: 5px;
+      }
+
+      @media screen and (max-width: 425px) {
+        .grid-container {
+          grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        }
+        .flex-item {
+          flex: 1 1 100px; /* Ukuran lebih kecil untuk layar kecil */
+        }
+        
+      }
+
+      @keyframes animasi {
+        0% {
+          
+        }
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <header class="main-header">
+      <a href="#" class="nav-link">Home</a>
+      <a href="index.html" class="nav-link">index</a>
+      <a href="youtbe.html" class="nav-link">youtbe</a>
+    </header>
+
+    <main>
+      <section class="demo-section">
+        <h2>Demo Selector & Pseudo-class</h2>
+        <div class="demo-box circle-container">
+          <div class="circle">1</div>
+          <div class="circle">2</div>
+          <div class="circle">3</div>
+          <div class="circle">4</div>
+        </div>
+      </section>
+
+      <section class="demo-section">
+        <h2>Demo Display Property</h2>
+        <div class="demo-box display-demo-box">
+          <p><strong>Display: block</strong> (Setiap elemen di baris baru)</p>
+          <div class="display-block">
+            <span>Span 1</span>
+            <span>Span 2</span>
+          </div>
+          <hr style="margin: 1rem 0" />
+
+          <p><strong>Display: inline</strong> (Elemen sejajar dalam baris)</p>
+          <div class="display-inline">
+            <span>Span 1</span>
+            <span>Span 2</span>
+            <span>Span 3</span>
+          </div>
+          <hr style="margin: 1rem 0" />
+
+          <p>
+            <strong>Display: inline-block</strong> (Sejajar tapi bisa diatur
+            ukuran)
+          </p>
+          <div class="display-inline-block">
+            <span>Span 1</span>
+            <span class="display-hidden">Hidden</span>
+            <span>Span 2</span>
+            <span class="display-none">None</span>
+            <span>Span 3</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="demo-section">
+        <h2>Demo Position Property</h2>
+        <div class="demo-box position-container">
+          <div class="position-box pos-relative">Relative</div>
+          <div class="position-box pos-absolute">Absolute</div>
+        </div>
+      </section>
+
+      <section class="demo-section">
+        <h2>Demo Flexbox Layout</h2>
+        <div class="flex-container">
+          <div class="flex-item"></div>
+          <div class="flex-item"></div>
+          <div class="flex-item"></div>
+          <div class="flex-item"></div>
+        </div>
+      </section>
+
+      <section class="demo-section">
+        <h2>Demo Grid Layout</h2>
+        <div class="grid-container">
+          <div class="grid-item"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item"></div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
